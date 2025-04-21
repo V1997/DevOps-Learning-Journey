@@ -47,6 +47,18 @@ This repository documents my journey learning DevOps practices and tools. It ser
 ### Version Control
 - **Git**
   - Basic commands: `git clone`, `git add`, `git commit`, `git push`, `git pull`, `git branch`
+    https://youtu.be/hrTQipWp6co?si=ot_b4nLxd2xLdKs4
+    git add .
+    git reset .
+    git checkout -- --> This one is to discard the changes made from the reset.
+    git log
+    git checkout "commitHash from git log command which version you want to take" --> To view the previous version of your code ...
+
+    Restoring code to previous version:
+        
+
+    Current commmit and behind the current commit
+
   - Branching strategies: GitFlow, GitHub Flow, Trunk-based development
   - *Personal Notes*: [Add your experiences/tips here]
 
