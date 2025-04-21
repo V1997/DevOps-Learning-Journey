@@ -26,3 +26,7 @@ Even though I mostly use VS Code's Git integration now, I still find myself usin
 
 > Pro tip: I've set up tab completion for Git commands in my terminal - saves me tons of typing mistakes!
 >
+
+Git Configuration
+Third I do on a new machine is set up my Git identity:
+
