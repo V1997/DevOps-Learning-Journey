@@ -28,5 +28,5 @@ Even though I mostly use VS Code's Git integration now, I still find myself usin
 >
 
 Git Configuration
-Third I do on a new machine is set up my Git identity:
+Fourth I do on a new machine is set up my Git identity:
 
