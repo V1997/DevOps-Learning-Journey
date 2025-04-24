@@ -27,6 +27,75 @@ Even though I mostly use VS Code's Git integration now, I still find myself usin
 > Pro tip: I've set up tab completion for Git commands in my terminal - saves me tons of typing mistakes!
 >
 
-Git Configuration
-10th I do on a new machine is set up my Git identity:
+## Git Configuration
+
+Setting up your identity is crucial for proper attribution of commits:
+```
+# Configure username globally
+git config --global user.name "Your Name"
+
+# Configure email globally
+git config --global user.email "email@example.com"
+
+# Configure default branch name
+git config --global init.defaultBranch main
+
+# Create useful aliases
+git config --global alias.s "status"   # Now you can use: git s
+git config --global alias.lg "log --all --graph --oneline"
+```
+## The Three Git Areas
+
+Understanding these three areas clicked for me after I messed up a few commits:
+
+![Git Workflow Diagram](git-workflow-diagram-detailed.svg)
+
+1. **Working Area**: Where I make all my changes and tests
+2. **Staging Area**: The "review before commit" space where I organize what goes into each commit
+3. **Commit History**: My project's timeline - every checkpoint I've created
+
+## Creating and Managing Commits
+
+### My Daily Git Workflow
+
+| Command | How I Use It | Movement |
+|---------|-------------|----------|
+| `git init` | Starting new projects (though I often use VS Code's UI for this now) | Creates `.git` folder |
+| `git status` | I check this constantly - my most used command by far | - |
+| `git add file.js` | Adding specific files when I don't want to stage everything | Working → Staging |
+| `git add .` | When I'm ready to commit all my changes | Working → Staging |
+| `git commit -m "Add user authentication"` | Creating checkpoints with clear descriptions | Staging → History |
+| `git reset file.js` | When I accidentally stage something I'm not ready to commit | Staging → Working |
+| `git checkout -- file.js` | Discarding experiments that didn't work out | Removes changes |
+
+### Saving My Neck with Advanced Commits
+
+```bash
+# I use this all the time when I forgot to add a file to a commit
+git commit --amend -m "Add user authentication with validation"
+
+# This interactive staging has saved me from committing debug code countless times
+git add -p
+
+# Before committing, I always run a diff to double-check what I'm about to commit
+git diff --staged
+```
+
+## Viewing and Navigating History
+
+### Inspecting Past Work
+
+```bash
+# Basic history check
+git log
+
+# This graph view is my go-to for understanding branch structures
+git log --all --graph --oneline --decorate
+
+# When I need to find out who changed a specific line (and why!)
+git blame file.js
+
+# After a merge went bad, this helped me see what exactly happened
+git show a72f6d
+```
 
