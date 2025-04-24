@@ -48,7 +48,7 @@ git config --global alias.lg "log --all --graph --oneline"
 
 Understanding these three areas clicked for me after I messed up a few commits:
 
-![Git Workflow Diagram](git-workflow-diagram-detailed.svg)
+![Git Workflow Diagram](DevOps-Learning-Journey\images\git-workflow-diagram-detailed.svg)
 
 1. **Working Area**: Where I make all my changes and tests
 2. **Staging Area**: The "review before commit" space where I organize what goes into each commit
