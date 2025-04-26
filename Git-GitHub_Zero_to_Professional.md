@@ -99,3 +99,74 @@ git blame file.js
 git show a72f6d
 ```
 
+
+### Time Travel
+
+```bash
+# Testing how code worked at a specific point in time
+git checkout a72f6d
+
+# The number of times this has saved me from accidental deletions...
+git checkout main -- src/helpers/format.js
+
+# When a feature branch went completely wrong and I needed to start over
+git checkout a72f6d .
+```
+
+## Branching Strategies
+
+I create branches for literally everything now - even tiny changes:
+
+```bash
+# See what branches exist and which one I'm on
+git branch
+
+# Creating a new feature branch (but staying on current branch)
+git branch feature/user-profiles
+
+# What I use 95% of the time - create and switch in one command
+git checkout -b hotfix/login-crash
+
+# Switching branches to work on something else
+git checkout main
+
+# Cleaning up after a merged PR
+git branch -d feature/user-profiles
+
+# When I abandoned an approach completely
+git branch -D feature/bad-idea
+```
+
+### How I Visualize Branches
+
+```
+                 feature/login
+                   ↓
+main o-------o-----o---o---o
+       \             ↑    /
+        o---o---o---o----o
+            ↑
+         hotfix/crash
+```
+
+## Merging and Resolving Conflicts
+
+### Basic Merging
+
+```bash
+# After completing a feature, bringing it into main
+git checkout main
+git merge feature/login --no-ff -m "Implement user login flow"
+```
+
+### Dealing with Merge Conflicts
+
+When I see this, I know my next 20 minutes are spoken for:
+
+```
+<<<<<<< HEAD
+const timeout = 3000; // Increased for slow connections
+=======
+const timeout = 1000; // Faster response times
+>>>>>>> feature/performance
+```
