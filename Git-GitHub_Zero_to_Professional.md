@@ -296,7 +296,7 @@ I keep a template with these common exclusions:
     - Editor files (`.vscode/`, `.idea/`)
     - OS files (`.DS_Store`, `Thumbs.db`)
 
-![image.png](attachment:7a90089c-3598-4e26-9d2d-e573468c020b:image.png)
+![image.png](./images/workflow%20of%20git%20for%20professional%20use.png)
 
 **4. Best Practices for Git & GitHub Integration**
 
