@@ -217,3 +217,186 @@ git pull origin main
 ![image.png](./images/image.png)
 
 ## Professional Git Workflows
+
+### Feature Branch Workflow
+
+This is how my team and I work every day:
+
+1. **Create a feature branch**
+    
+    ```bash
+    git checkout -b feature/payment-integration
+    # Code, test, refactor...
+    git add .
+    git commit -m "Add Stripe payment processing"
+    ```
+    
+2. **Push feature branch for code review**
+    
+    ```bash
+    git push -u origin feature/payment-integration
+    ```
+    
+3. **Create Pull Request on GitHub**
+    - I usually add screenshots and testing notes to my PRs
+    - Always tag relevant team members for review
+4. **Address feedback from code review**
+    
+    ```bash
+    # Making changes based on comments
+    git add .
+    git commit -m "Refactor payment handler per review"
+    git push
+    ```
+    
+5. **Update with latest main changes**
+    
+    ```bash
+    # This prevents merge conflicts later - I do it daily
+    git checkout main
+    git pull
+    git checkout feature/payment-integration
+    git merge main
+    # Resolve any conflicts
+    git push
+    ```
+    
+6. **After approval, merge via GitHub**
+    - I prefer "Squash and merge" for cleaner history
+    - Delete the branch on GitHub after merging
+7. **Clean up locally**
+    
+    ```bash
+    git checkout main
+    git pull
+    git branch -d feature/payment-integration
+    ```
+    
+
+## Git Best Practices
+
+1. **Commit Messages**
+    - I write messages as if explaining what the code does to a teammate
+    - First line under 50 chars: "Fix authentication timeout issue"
+    - Add details if needed: "Increases token validity to prevent logouts during form submission"
+    - Always reference ticket numbers: "Fixes #123"
+2. **Commit Frequency**
+    - I commit whenever I complete a logical unit of work
+    - Small, focused commits make code reviews and bug hunting much easier
+    - If my commit message needs "and" - it should be two commits
+3. **Branch Management**
+    - I use prefixes to keep branches organized: `feature/`, `fix/`, `refactor/`
+    - Delete branches after merging to prevent clutter
+    - Update from main at least once a day to prevent massive merge conflicts
+4. **.gitignore**
+I keep a template with these common exclusions:
+    - Build outputs (`/dist`, `/build`)
+    - Dependencies (`/node_modules`, `/vendor`)
+    - Environment files (`.env`, `.env.local`)
+    - Editor files (`.vscode/`, `.idea/`)
+    - OS files (`.DS_Store`, `Thumbs.db`)
+
+![image.png](attachment:7a90089c-3598-4e26-9d2d-e573468c020b:image.png)
+
+**4. Best Practices for Git & GitHub Integration**
+
+To work efficiently in professional environments, teams follow these best practices:
+
+- **Use meaningful branch names** (`feature-login`, `bugfix-404-error`).
+- **Commit often with clear messages** (`Fixed UI alignment in navbar`).
+- **Write Pull Request descriptions clearly** (What was changed and why).
+- **Automate testing** using CI/CD (GitHub Actions, Jenkins, CircleCI).
+- **Keep repository clean** by deleting merged branches.
+
+This feature branch workflow is widely used in companies, startups, and open-source projects to manage development efficiently.
+
+## Advanced Git Techniques
+
+### Stashing Changes
+
+```bash
+# When my boss comes by and needs an urgent fix on another branch
+git stash save "WIP: User profile feature"
+
+# Finding the right stash after coming back
+git stash list
+
+# Applying my stashed changes without removing the stash (just in case)
+git stash apply stash@{0}
+
+# When I'm confident everything is working
+git stash pop
+
+# When my stashed work deserves its own branch
+git stash branch feature/user-profiles stash@{0}
+```
+
+### Cleaning Up History
+
+```bash
+# Cleaning up my local commits before sharing (I do this a lot)
+git rebase -i HEAD~3
+
+# Squashing a bunch of "WIP" commits into a clean one
+git rebase -i main  # Then mark commits as 'squash' or 'fixup'
+
+# Grabbing a specific bug fix from another branch
+git cherry-pick a72f6d
+
+# When I've pushed to the wrong branch and need to undo
+git reset --hard origin/main
+```
+
+### Reflog - My Safety Net
+
+```bash
+# This has saved me more than once after a bad rebase or reset
+git reflog
+
+# Recovering work I thought was lost forever
+git checkout -b recovery a72f6d
+```
+
+## Git with VS Code
+
+After years of command-line Git, discovering VS Code's Git integration was a game-changer for my workflow:
+
+### Source Control Panel
+
+- The Source Control tab gives me a clear view of all changed files
+- I can stage changes with a click instead of typing `git add`
+- Seeing diffs side-by-side makes reviewing changes much easier
+- The commit input box supports multi-line messages with proper formatting
+
+### Integrated Terminal
+
+- When I need command-line Git power, I just press `Ctrl+`` to open the terminal
+- I can run complex Git commands while still seeing my code
+- The terminal remembers my Git command history between sessions
+
+### Extensions (VsCode) that Changed My Git Life
+
+- **GitLens**: Lets me see who changed each line and when (blame annotations)
+- **Git History**: Visualizes the commit history with a beautiful graph
+- **Git Graph**: Another great way to visualize branches and merges
+
+### My VS Code Git Workflow
+
+1. Make code changes in the editor
+2. `Ctrl+Shift+G` to open Source Control
+3. Hover over files to see changes with "+" button to stage
+4. Enter commit message and press `Ctrl+Enter` to commit
+5. Click "..." for additional options like Push/Pull
+6. Use the status bar branch indicator to create/switch branches
+
+### Keyboard Shortcuts I Use Daily
+
+- `Ctrl+Shift+G`: Open Source Control view
+- `Alt+Enter` on a changed file: Stage the file
+- `Ctrl+Enter` in commit message: Commit staged changes
+- `F1` then "git pull": Pull from remote
+- `F1` then "git push": Push to remote
+
+---
+
+I hope this guide helps you as much as building these skills has helped me. Git has a learning curve, but stick with it - I went from fearing merge conflicts to confidently fixing them in front of clients. The time investment pays off every single day.
