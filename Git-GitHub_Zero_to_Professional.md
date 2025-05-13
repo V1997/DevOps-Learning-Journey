@@ -170,3 +170,50 @@ const timeout = 3000; // Increased for slow connections
 const timeout = 1000; // Faster response times
 >>>>>>> feature/performance
 ```
+
+**My conflict resolution workflow:**
+
+1. First, I don't panic (learned that the hard way)
+2. I open the files in VS Code, which highlights conflicts beautifully
+3. I review each change carefully, sometimes consulting with the original developers
+4. After choosing the correct code, I remove all those markers
+5. Stage and commit: `git add .` followed by `git commit`
+
+## Remote Repositories with GitHub
+
+### Setting Up Remotes
+
+```bash
+# Linking my local repo to GitHub after creating a new repo there
+git remote add origin <https://github.com/username/repo.git>
+
+# Checking my remote connections (I do this to verify before pushing)
+git remote -v
+
+# When I need to switch to a different remote (like after forking)
+git remote remove origin
+git remote add origin <https://github.com/myusername/forked-repo.git>
+```
+
+### Syncing with Remote Repositories
+
+```bash
+# Starting work on an existing project
+git clone <https://github.com/company/project.git>
+
+# Pushing my new feature branch to share with the team for review
+git push origin feature/new-design
+
+# This is my go-to for setting up tracking - saves tons of typing later
+git push -u origin feature/new-design
+
+# Checking for team updates without integrating them yet
+git fetch origin
+
+# Getting latest changes before starting new work (I do this every morning)
+git pull origin main
+```
+
+![image.png](./images/image.png)
+
+## Professional Git Workflows
